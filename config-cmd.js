@@ -10,12 +10,16 @@ var exchange = process.argv[4];
 var currency = process.argv[5];
 var asset = process.argv[6];
 var method = process.argv[7];
+var amountAvailable = process.argv[8]
 
 // Want Gekko to perform real trades on buy or sell advice?
 // Enabling this will activate trades for the market being
 // watched by `config.watch`.
 config.trader = exchanges[exchange];
 config.trader.enabled = true;
+if (amountAvailable) {
+  config.trader.currencyAmountAvailableToTrade = parseInt(amountAvailable);
+}
 
 config.watch = {
   // see https://gekko.wizb.it/docs/introduction/supported_exchanges.html
